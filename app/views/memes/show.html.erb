@@ -1,0 +1,28 @@
+
+
+<div class="row">
+  <div class="span9">
+    <%= image_tag(@meme.picture_url, :width => "50%") if @meme.picture.present? %>
+    <h3>Comments</h3>
+<% @comments.each do |comment| %>
+  <div>
+    <strong><%= comment.user_name %></strong>
+    <br />
+    <p><%= comment.body %></p>
+    <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
+<%= render 'comments/form' %>
+  </div>
+
+  <div class="span3">
+    <p><b>Title: </b><%= @meme.title %></p>
+    <p>
+      <%= link_to 'Edit', edit_meme_path(@meme) %> |
+      <%= link_to 'Delete', @meme, confirm: 'Are you sure?', method: :delete %> |
+      <%= link_to 'Back', memes_path %>
+    </p>
+  </div>
+</div>
+
+
